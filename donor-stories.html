@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stacklyFund2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ── Page-specific ── */
+        .page-hero {
+            min-height: 70vh;
+            background: linear-gradient(135deg, rgba(0, 80, 0, 0.9) 0%, rgba(0, 60, 0, 0.95) 100%),
+                url('https://picsum.photos/seed/donors/1920/1080') center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 120px 20px 60px;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 16px;
+        }
+
+        .page-hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #ddd;
+        }
+
+        /* Stats band */
+        .donor-stats {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .donor-stats .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .donor-stats h3 {
+            font-size: 2.4rem;
+            color: var(--accent-color);
+        }
+
+        /* Featured Donor */
+        .featured-donor {
+            padding: 80px 0;
+        }
+
+        .fd-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, .1);
+            padding: 40px;
+        }
+
+        .fd-card img {
+            width: clamp(120px, 25vw, 220px);
+            height: clamp(120px, 25vw, 220px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--accent-color);
+            flex-shrink: 0;
+        }
+
+        .fd-quote {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            font-style: italic;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        .fd-name {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 12px;
+        }
+
+        /* Donor Grid */
+        .donor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .donor-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 28px 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .donor-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .donor-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 14px;
+        }
+
+        .donor-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+
+        .donor-card .donated {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin: 8px 0;
+        }
+
+        .donor-card p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Impact Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+
+        .tl-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .tl-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: 50%;
+            top: 8px;
+            width: 18px;
+            height: 18px;
+            background: var(--accent-color);
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            flex-shrink: 0;
+        }
+
+        .tl-content {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 20px 24px;
+            width: calc(50% - 36px);
+        }
+
+        .tl-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 6px;
+        }
+
+        .tl-content p {
+            font-size: 0.88rem;
+            color: #666;
+        }
+
+        .tl-year {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        /* Categories */
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
+        .cat-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 24px 16px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .cat-card:hover {
+            background: var(--primary-color);
+            color: #fff;
+            transform: translateY(-5px);
+        }
+
+        .cat-card:hover .cat-icon {
+            color: #fff;
+        }
+
+        .cat-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .cat-card h5 {
+            font-size: 0.9rem;
+        }
+
+        /* Leaderboard */
+        .lb-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .lb-table th {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .lb-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
+            vertical-align: middle;
+        }
+
+        .lb-table tr:hover td {
+            background: #f0faf0;
+        }
+
+        .lb-rank {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .lb-rank.gold {
+            background: #FFD700;
+            color: #333;
+        }
+
+        .lb-rank.silver {
+            background: #C0C0C0;
+            color: #333;
+        }
+
+        .lb-rank.bronze {
+            background: #CD7F32;
+            color: #fff;
+        }
+
+        .lb-rank.regular {
+            background: #e8f5e9;
+            color: var(--primary-color);
+        }
+
+        /* Donor Benefits */
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .benefit-card {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 24px;
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        /* Testimonials Carousel (CSS-only) */
+        .testimonials-track {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .t-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 28px;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .t-card p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 16px;
+        }
+
+        .t-card .t-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .t-card img {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-q {
+            background: #fff;
+            padding: 18px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .faq-q .arrow {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-q .arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            background: #fafafa;
+        }
+
+        .faq-a p {
+            padding: 16px 22px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 200px;
+        }
+
+        /* Become Donor CTA */
+        .become-cta {
+            background: linear-gradient(135deg, #006400, #00a000);
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .become-cta h2 {
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
+            margin-bottom: 16px;
+        }
+
+        .become-cta p {
+            font-size: 1rem;
+            color: #c8f0c8;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        /* Mobile fixes */
+        @media (max-width:768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .tl-item,
+            .tl-item:nth-child(even) {
+                flex-direction: column;
+                padding-left: 50px;
+            }
+
+            .tl-dot {
+                left: 20px;
+            }
+
+            .tl-content {
+                width: 100%;
+            }
+
+            .fd-card {
+                padding: 24px;
+            }
+
+            .lb-table th:nth-child(3),
+            .lb-table td:nth-child(3) {
+                display: none;
+            }
+        }
+
+        @media (max-width:480px) {
+            .donor-stats h3 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader"><img src="logo.webp" alt="Loading..."></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><img src="logo.webp" alt="HopeFund"></a>
+                <ul class="nav-links">
+                    <li >
+                        <a href="index.html">Home1</a>
+                        
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="campaigns.html">Campaigns</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="btn btn-primary"
+                            style="padding:8px 20px;margin-left:10px;">Login</a></li>
+                </ul>
+                <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- §1 · HERO -->
+    <section class="page-hero">
+        <div class="container animate fade-in-up">
+            <h1>Real People. Real Change. 🧡</h1>
+            <p>Every number has a name. Every donation has a story. Meet the incredible donors who make HopeFund
+                possible.</p>
+            <a href="404.html" class="btn btn-secondary">Share Your Story</a>
+        </div>
+    </section>
+
+    <!-- §2 · STATS BAND -->
+    <section class="donor-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="animate fade-in-up delay-100">
+                    <h3>12,400+</h3>
+                    <p>Active Donors</p>
+                </div>
+                <div class="animate fade-in-up delay-200">
+                    <h3>$8.2M</h3>
+                    <p>Total Raised</p>
+                </div>
+                <div class="animate fade-in-up delay-300">
+                    <h3>630+</h3>
+                    <p>Campaigns Funded</p>
+                </div>
+                <div class="animate fade-in-up delay-400">
+                    <h3>58</h3>
+                    <p>Countries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- §3 · FEATURED DONOR -->
+    <section class="featured-donor" style="background:#f8f9fa;">
+        <div class="container">
+            <div class="section-title animate fade-in-up">
+                <h2>Donor of the Month</h2>
+                <p>Spotlight on an extraordinary individual making an outsized impact.</p>
+            </div>
+            <div class="fd-card animate fade-in-up delay-100">
+                <img src="https://picsum.photos/seed/donor1/300/300" alt="Featured Donor">
+                <div style="flex:1;min-width:200px;">
+                    <span
+                        style="background:var(--accent-color);color:#333;font-size:0.75rem;font-weight:700;padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:12px;">⭐
+                        February 2026</span>
+                    <p class="fd-quote">"I discovered HopeFund when searching for ways to support education in my
+                        village back home. Within two weeks of starting my fundraiser, we raised enough to buy 400
+                        textbooks. Seeing those children's faces made every share worth it."</p>
+                    <p class="fd-name">— Priya Sharma &nbsp;·&nbsp; <span style="color:#888;font-weight:400;">New Delhi,
+                            India</span></p>
+                    <p style="margin-top:10px;color:#555;font-size:0.9rem;">Total donated: <strong
+                            style="color:var(--primary-color);">$14,200</strong> across 7 campaigns</p>
+                    <a href="404.html" class="btn btn-primary"
+                        style="margin-top:18px;display:inline-block;font-size:0.85rem;">Read Full Story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- §4 · DONOR GRID -->
+    <section style="padding:80px 0;">
+        <div class="container">
+            <div class="section-title animate fade-in-up">
+                <h2>Community Donors</h2>
+                <p>Ordinary people doing extraordinary things.</p>
+            </div>
+            <div class="donor-grid">
+                <div class="donor-card animate fade-in-up">
+                    <img src="https://picsum.photos/seed/p1/160/160" alt="Donor">
+                    <h4>James Oduya</h4>
+                    <p>Lagos, Nigeria</p>
+                    <div class="donated">$3,800</div>
+                    <p>Funded 3 clean water projects</p>
+                    <a href="404.html" class="btn btn-primary"
+                        style="font-size:0.8rem;padding:8px 18px;margin-top:12px;">View Story</a>
+                </div>
+                <div class="donor-card animate fade-in-up delay-100">
+                    <img src="https://picsum.photos/seed/p2/160/160" alt="Donor">
+                    <h4>Maria Gonzalez</h4>
+                    <p>Mexico City, Mexico</p>
+                    <div class="donated">$6,200</div>
+                    <p>Champion of rural education</p>
+                    <a href="404.html" class="btn btn-primary"
+                        style="font-size:0.8rem;padding:8px 18px;margin-top:12px;">View Story</a>
+                </div>
+                <div class="donor-card animate fade-in-up delay-200">
+                    <img src="https://picsum.photos/seed/p3/160/160" alt="Donor">
+                    <h4>Alex Kim</h4>
+                    <p>Seoul, South Korea</p>
+                    <div class="donated">$11,500</div>
+                    <p>Top ICU medical aid donor</p>
+                    <a href="404.html" class="btn btn-primary"
+                        style="font-size:0.8rem;padding:8px 18px;margin-top:12px;">View Story</a>
+                </div>
+                <div class="donor-card animate fade-in-up delay-300">
+                    <img src="https://picsum.photos/seed/p4/160/160" alt="Donor">
+                    <h4>Fatima Al-Rashid</h4>
+                    <p>Dubai, UAE</p>
+                    <div class="donated">$9,750</div>
+                    <p>Environmental champion</p>
+                    <a href="404.html" class="btn btn-primary"
+                        style="font-size:0.8rem;padding:8px 18px;margin-top:12px;">View Story</a>
+                </div>
+                <div class="donor-card animate fade-in-up">
+                    <img src="https://picsum.photos/seed/p5/160/160" alt="Donor">
+                    <h4>Tom Richards</h4>
+                    <p>London, UK</p>
+                    <div class="donated">$2,400</div>
+                    <p>Food drive advocate</p>
+                    <a href="404.html" class="btn btn-primary"
+                        style="font-size:0.8rem;padding:8px 18px;margin-top:12px;">View Story</a>
+                </div>
+                <div class="donor-card animate fade-in-up delay-100">
+                    <img src="https://picsum.photos/seed/p6/160/160" alt="Donor">
+                    <h4>Amara Diallo</h4>
+                    <p>Dakar, Senegal</p>
+                    <div class="donated">$5,100</div>
+                    <p>Mental health awareness</p>
+                    <a href="404.html" class="btn btn-primary"
+                        style="font-size:0.8rem;padding:8px 18px;margin-top:12px;">View Story</a>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:44px;">
+                <a href="404.html" class="btn btn-primary">See All Donors</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- §5 · IMPACT TIMELINE -->
+    <section style="padding:80px 0;background:#f4f4f4;">
+        <div class="container">
+            <div class="section-title animate fade-in-up">
+                <h2>Our Impact Timeline</h2>
+                <p>Milestones powered by your generosity.</p>
+            </div>
+            <div class="timeline">
+                <div class="tl-item animate fade-in-up">
+                    <div class="tl-content">
+                        <div class="tl-year">2019</div>
+                        <h4>Platform Launch</h4>
+                        <p>HopeFund launched with 50 campaigns and 200 donors in 5 countries.</p>
+                    </div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-content" style="visibility:hidden;"></div>
+                </div>
+                <div class="tl-item animate fade-in-up delay-100">
+                    <div class="tl-content" style="visibility:hidden;"></div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <div class="tl-year">2020</div>
+                        <h4>$1M Milestone</h4>
+                        <p>First million dollars raised — funding 80 critical health campaigns during COVID-19.</p>
+                    </div>
+                </div>
+                <div class="tl-item animate fade-in-up delay-200">
+                    <div class="tl-content">
+                        <div class="tl-year">2022</div>
+                        <h4>Global Expansion</h4>
+                        <p>Expanded to 40 countries with multilingual support and mobile app launch.</p>
+                    </div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-content" style="visibility:hidden;"></div>
+                </div>
+                <div class="tl-item animate fade-in-up delay-300">
+                    <div class="tl-content" style="visibility:hidden;"></div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-content">
+                        <div class="tl-year">2024</div>
+                        <h4>$8M Raised</h4>
+                        <p>Over 12,000 donors across 58 countries. 630+ campaigns successfully funded.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- §6 · QUOTE / VIDEO TESTIMONIAL BANNER -->
+    <section style="background:var(--primary-color);padding:70px 20px;text-align:center;color:#fff;">
+        <div class="container animate fade-in-up">
+            <div style="font-size:4rem;margin-bottom:16px;">🎥</div>
+            <h2 style="font-size:clamp(1.4rem,3vw,2rem);max-width:700px;margin:0 auto 20px;">"Donating to HopeFund
+                changed my perspective on wealth. I realized giving is the greatest investment."</h2>
+            <p style="color:#b8e0b8;margin-bottom:28px;">— Robert Chang, Singapore · $42,000 donated</p>
+            <a href="404.html" class="btn btn-secondary">Watch His Story</a>
+        </div>
+    </section>
+
+    <!-- §7 · CAUSE CATEGORIES -->
+    <section style="padding:80px 0;">
+        <div class="container">
+            <div class="section-title animate fade-in-up">
+                <h2>Browse by Cause</h2>
+                <p>Find donor stories in causes closest to your heart.</p>
+            </div>
+            <div class="cat-grid">
+                <div class="cat-card animate fade-in-up">
+                    <div class="cat-icon">💧</div>
+                    <h5>Clean Water</h5>
+                </div>
+                <div class="cat-card animate fade-in-up delay-100">
+                    <div class="cat-icon">📚</div>
+                    <h5>Education</h5>
+                </div>
+                <div class="cat-card animate fade-in-up delay-200">
+                    <div class="cat-icon">🏥</div>
+                    <h5>Healthcare</h5>
+                </div>
+                <div class="cat-card animate fade-in-up delay-300">
+                    <div class="cat-icon">🌿</div>
+                    <h5>Environment</h5>
+                </div>
+                <div class="cat-card animate fade-in-up">
+                    <div class="cat-icon">🍽️</div>
+                    <h5>Food Security</h5>
+                </div>
+                <div class="cat-card animate fade-in-up delay-100">
+                    <div class="cat-icon">🏠</div>
+                    <h5>Shelter</h5>
+                </div>
+                <div class="cat-card animate fade-in-up delay-200">
+                    <div class="cat-icon">👶</div>
+                    <h5>Child Welfare</h5>
+                </div>
+                <div class="cat-card animate fade-in-up delay-300">
+                    <div class="cat-icon">🧠</div>
+                    <h5>Mental Health</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- §8 · LEADERBOARD -->
+    <section style="padding:80px 0;background:#f8f9fa;">
+        <div class="container">
+            <div class="section-title animate fade-in-up">
+                <h2>Top Donors Leaderboard</h2>
+                <p>Celebrating our most generous contributors this month.</p>
+            </div>
+            <div style="overflow-x:auto;">
+                <table class="lb-table animate fade-in-up delay-100">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Donor</th>
+                            <th>Country</th>
+                            <th>Campaigns</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="lb-rank gold">1</div>
+                            </td>
+                            <td><strong>Alex Kim</strong></td>
+                            <td>South Korea 🇰🇷</td>
+                            <td>12</td>
+                            <td><strong style="color:var(--primary-color);">$11,500</strong></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="lb-rank silver">2</div>
+                            </td>
+                            <td><strong>Fatima Al-Rashid</strong></td>
+                            <td>UAE 🇦🇪</td>
+                            <td>9</td>
+                            <td><strong style="color:var(--primary-color);">$9,750</strong></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="lb-rank bronze">3</div>
+                            </td>
+                            <td><strong>Maria Gonzalez</strong></td>
+                            <td>Mexico 🇲🇽</td>
+                            <td>7</td>
+                            <td><strong style="color:var(--primary-color);">$6,200</strong></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="lb-rank regular">4</div>
+                            </td>
+                            <td><strong>Amara Diallo</strong></td>
+                            <td>Senegal 🇸🇳</td>
+                            <td>6</td>
+                            <td><strong style="color:var(--primary-color);">$5,100</strong></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="lb-rank regular">5</div>
+                            </td>
+                            <td><strong>James Oduya</strong></td>
+                            <td>Nigeria 🇳🇬</td>
+                            <td>5</td>
+                            <td><strong style="color:var(--primary-color);">$3,800</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align:center;margin-top:32px;">
+                <a href="404.html" class="btn btn-primary">View Full Leaderboard</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- §9 · BECOME A DONOR CTA -->
+    <section class="become-cta">
+        <div class="container animate fade-in-up">
+            <h2>Ready to Write Your Own Story?</h2>
+            <p>Join 12,400+ donors who are changing lives every day. Your first donation takes less than 60 seconds.</p>
+            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+                <a href="404.html" class="btn btn-secondary">Start Donating Now</a>
+                <a href="start-campaign.html" class="btn"
+                    style="background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(255,255,255,0.5);">Start a
+                    Campaign</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- §10 · DONOR BENEFITS -->
+    <section style="padding:80px 0;">
+        <div class="container">
+            <div class="section-title animate fade-in-up">
+                <h2>Why Donors Love HopeFund</h2>
+                <p>Benefits that set us apart from other platforms.</p>
+            </div>
+            <div class="benefit-grid">
+                <div class="benefit-card animate fade-in-up">
+                    <div class="benefit-icon">🔒</div>
+                    <div>
+                        <h4>100% Secure</h4>
+                        <p style="color:#666;font-size:0.9rem;">Bank-level encryption on every transaction. Your data is
+                            always safe.</p>
+                    </div>
+                </div>
+                <div class="benefit-card animate fade-in-up delay-100">
+                    <div class="benefit-icon">📊</div>
+                    <div>
+                        <h4>Live Tracking</h4>
+                        <p style="color:#666;font-size:0.9rem;">See exactly how funds are being used with real-time
+                            campaign updates.</p>
+                    </div>
+                </div>
+                <div class="benefit-card animate fade-in-up delay-200">
+                    <div class="benefit-icon">🧾</div>
+                    <div>
+                        <h4>Tax Receipts</h4>
+                        <p style="color:#666;font-size:0.9rem;">Instant digital receipts suitable for tax deductions in
+                            40+ countries.</p>
+                    </div>
+                </div>
+                <div class="benefit-card animate fade-in-up delay-300">
+                    <div class="benefit-icon">🌍</div>
+                    <div>
+                        <h4>Global Reach</h4>
+                        <p style="color:#666;font-size:0.9rem;">Support causes in 58 countries with multi-currency
+                            support.</p>
+                    </div>
+                </div>
+                <div class="benefit-card animate fade-in-up">
+                    <div class="benefit-icon">✅</div>
+                    <div>
+                        <h4>Verified Only</h4>
+                        <p style="color:#666;font-size:0.9rem;">Every campaign is manually reviewed before going live.
+                        </p>
+                    </div>
+                </div>
+                <div class="benefit-card animate fade-in-up delay-100">
+                    <div class="benefit-icon">💬</div>
+                    <div>
+                        <h4>Donor Community</h4>
+                        <p style="color:#666;font-size:0.9rem;">Connect with like-minded givers in our private community
+                            forum.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- §11 · TESTIMONIALS -->
+    <section style="padding:80px 0;background:#f4f4f4;">
+        <div class="container">
+            <div class="section-title animate fade-in-up">
+                <h2>What Our Donors Say</h2>
+            </div>
+            <div class="testimonials-track">
+                <div class="t-card animate fade-in-up">
+                    <p>"I've tried other platforms, but HopeFund's transparency is unmatched. I get weekly updates from
+                        the campaigns I support."</p>
+                    <div class="t-author">
+                        <img src="https://picsum.photos/seed/t1/60/60" alt="Testimonial">
+                        <div><strong>Samuel Adeyemi</strong><br><span style="font-size:0.8rem;color:#888;">Lagos,
+                                Nigeria</span></div>
+                    </div>
+                </div>
+                <div class="t-card animate fade-in-up delay-100">
+                    <p>"I raised $18,000 for my daughter's treatment in just 3 weeks. HopeFund's team helped every step
+                        of the way."</p>
+                    <div class="t-author">
+                        <img src="https://picsum.photos/seed/t2/60/60" alt="Testimonial">
+                        <div><strong>Chen Wei</strong><br><span style="font-size:0.8rem;color:#888;">Beijing,
+                                China</span></div>
+                    </div>
+                </div>
+                <div class="t-card animate fade-in-up delay-200">
+                    <p>"Donating on HopeFund feels personal. I can message campaign creators and see the real impact."
+                    </p>
+                    <div class="t-author">
+                        <img src="https://picsum.photos/seed/t3/60/60" alt="Testimonial">
+                        <div><strong>Sophie Müller</strong><br><span style="font-size:0.8rem;color:#888;">Berlin,
+                                Germany</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- §12 · GLOBAL IMPACT MAP VISUAL -->
+    <section style="padding:80px 0;text-align:center;">
+        <div class="container animate fade-in-up">
+            <div class="section-title">
+                <h2>Global Impact</h2>
+                <p>Donations flowing to every corner of the world.</p>
+            </div>
+            <div
+                style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:16px;padding:50px 20px;position:relative;overflow:hidden;">
+                <div style="font-size:5rem;margin-bottom:20px;">🌍</div>
+                <h3 style="color:var(--primary-color);font-size:2rem;">58 Countries Active</h3>
+                <p style="color:#555;max-width:500px;margin:10px auto 30px;">From rural Kenya to urban São Paulo,
+                    HopeFund reaches those who need it most.</p>
+                <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:20px;">
+                    <div
+                        style="background:#fff;padding:12px 22px;border-radius:8px;box-shadow:var(--shadow);font-size:0.85rem;">
+                        🌍 Africa: 18 countries</div>
+                    <div
+                        style="background:#fff;padding:12px 22px;border-radius:8px;box-shadow:var(--shadow);font-size:0.85rem;">
+                        🌏 Asia: 14 countries</div>
+                    <div
+                        style="background:#fff;padding:12px 22px;border-radius:8px;box-shadow:var(--shadow);font-size:0.85rem;">
+                        🌎 Americas: 12 countries</div>
+                    <div
+                        style="background:#fff;padding:12px 22px;border-radius:8px;box-shadow:var(--shadow);font-size:0.85rem;">
+                        🌍 Europe: 10 countries</div>
+                    <div
+                        style="background:#fff;padding:12px 22px;border-radius:8px;box-shadow:var(--shadow);font-size:0.85rem;">
+                        🌏 Oceania: 4 countries</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- §13 · NEWSLETTER -->
+    <section style="padding:70px 20px;background:var(--primary-color);text-align:center;color:#fff;">
+        <div class="container animate fade-in-up">
+            <h2>Stay Inspired</h2>
+            <p style="color:#c8f0c8;margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto;">Get weekly
+                donor spotlights and impact reports straight to your inbox.</p>
+            <form action="404.html" method="get"
+                style="max-width:480px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+                <input type="email" placeholder="Enter your email"
+                    style="flex:1;min-width:200px;padding:14px;border:none;border-radius:8px;font-family:inherit;outline:none;">
+                <button type="submit" class="btn btn-secondary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- §14 · FAQ -->
+    <section style="padding:80px 0;">
+        <div class="container">
+            <div class="section-title animate fade-in-up">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about donating on HopeFund.</p>
+            </div>
+            <div style="max-width:760px;margin:0 auto;" class="animate fade-in-up delay-100">
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I know my donation
+                        reaches the right place? <span class="arrow">▾</span></div>
+                    <div class="faq-a">
+                        <p>We verify every campaign before it goes live and require campaign creators to provide
+                            detailed progress updates every two weeks.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I donate anonymously?
+                        <span class="arrow">▾</span>
+                    </div>
+                    <div class="faq-a">
+                        <p>Yes! During checkout you can choose to keep your name hidden from the public campaign page
+                            while still receiving your personal receipt.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Are my donations
+                        tax-deductible? <span class="arrow">▾</span></div>
+                    <div class="faq-a">
+                        <p>Donations to registered non-profits on our platform are tax-deductible in most countries. We
+                            provide a formal receipt instantly after each donation.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What payment methods are
+                        accepted? <span class="arrow">▾</span></div>
+                    <div class="faq-a">
+                        <p>We accept Visa, Mastercard, PayPal, Apple Pay, Google Pay, and bank transfers in 30+
+                            currencies.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I set up a recurring
+                        donation? <span class="arrow">▾</span></div>
+                    <div class="faq-a">
+                        <p>Absolutely. After giving once, you can activate monthly or quarterly auto-donations from your
+                            account dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>HopeFund</h3>
+                    <p>Empowering change through collective giving.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <a href="about.html">About Us</a><a href="campaigns.html">Campaigns</a>
+                    <a href="donor-stories.html">Donor Stories</a><a href="start-campaign.html">Start a Campaign</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p>123 Charity Lane, NY</p>
+                    <p>help@hopefund.org</p>
+                    <div class="social-links">
+                        <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                        <a href="404.html"><i class="fab fa-twitter"></i></a>
+                        <a href="404.html"><i class="fab fa-instagram"></i></a>
+                        <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HopeFund. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                if (window.innerWidth <= 768) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
+            });
+        });
+    </script>
+</body>
+
+</html>

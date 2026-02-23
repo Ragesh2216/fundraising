@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaigns - HopeFund</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .campaign-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .campaign-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .campaign-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .campaign-content {
+            padding: 20px;
+        }
+
+        .progress-bar {
+            background: #eee;
+            height: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            border-radius: 25px;
+            border: 2px solid #ddd;
+            background: #fff;
+            font-family: var(--font-primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader"><img src="logo.webp" alt="Loading..."></div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><img src="logo.webp" alt="HopeFund"></a>
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="index.html">Home</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="donor-stories.html" > home2</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="campaigns.html" class="active">Campaigns</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="btn btn-primary"
+                            style="padding:8px 20px;margin-left:10px;">Login</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section style="background-color:#f4f4f4;padding:120px 0 60px;text-align:center;">
+        <div class="container animate fade-in-up">
+            <h1>Active Campaigns</h1>
+            <p>Choose a cause to support today.</p>
+        </div>
+    </section>
+
+    <section style="padding:80px 0;">
+        <div class="container">
+            <div style="text-align:center;margin-bottom:40px;" class="animate fade-in-up">
+                <a href="404.html" class="filter-btn active">All</a>
+                <a href="404.html" class="filter-btn">Education</a>
+                <a href="404.html" class="filter-btn">Health</a>
+                <a href="404.html" class="filter-btn">Environment</a>
+                <a href="404.html" class="filter-btn">Food</a>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;">
+                <div class="campaign-card animate fade-in-up">
+                    <div class="campaign-img"
+                        style="background-image:url('https://placehold.co/400x300/green/white?text=Reforestation');">
+                    </div>
+                    <div class="campaign-content">
+                        <h4>Global Reforestation</h4>
+                        <p style="font-size:0.9rem;color:#666;margin:10px 0;">Planting 1 million trees.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:30%;"></div>
+                        </div>
+                        <a href="404.html" class="btn btn-secondary"
+                            style="width:100%;text-align:center;display:block;">Donate Now</a>
+                    </div>
+                </div>
+                <div class="campaign-card animate fade-in-up delay-100">
+                    <div class="campaign-img"
+                        style="background-image:url('https://placehold.co/400x300/orange/white?text=Food+Drive');">
+                    </div>
+                    <div class="campaign-content">
+                        <h4>Community Food Drive</h4>
+                        <p style="font-size:0.9rem;color:#666;margin:10px 0;">Feeding families in need.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:85%;"></div>
+                        </div>
+                        <a href="404.html" class="btn btn-secondary"
+                            style="width:100%;text-align:center;display:block;">Donate Now</a>
+                    </div>
+                </div>
+                <div class="campaign-card animate fade-in-up delay-200">
+                    <div class="campaign-img"
+                        style="background-image:url('https://placehold.co/400x300/blue/white?text=Tech+Labs');"></div>
+                    <div class="campaign-content">
+                        <h4>School Tech Labs</h4>
+                        <p style="font-size:0.9rem;color:#666;margin:10px 0;">Modernizing classrooms.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:55%;"></div>
+                        </div>
+                        <a href="404.html" class="btn btn-secondary"
+                            style="width:100%;text-align:center;display:block;">Donate Now</a>
+                    </div>
+                </div>
+                <div class="campaign-card animate fade-in-up delay-100">
+                    <div class="campaign-img"
+                        style="background-image:url('https://placehold.co/400x300/teal/white?text=Clean+Water');"></div>
+                    <div class="campaign-content">
+                        <h4>Clean Water Initiative</h4>
+                        <p style="font-size:0.9rem;color:#666;margin:10px 0;">Safe drinking water for villages.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:68%;"></div>
+                        </div>
+                        <a href="404.html" class="btn btn-secondary"
+                            style="width:100%;text-align:center;display:block;">Donate Now</a>
+                    </div>
+                </div>
+                <div class="campaign-card animate fade-in-up delay-200">
+                    <div class="campaign-img"
+                        style="background-image:url('https://placehold.co/400x300/purple/white?text=Medical+Aid');">
+                    </div>
+                    <div class="campaign-content">
+                        <h4>Rural Health Clinics</h4>
+                        <p style="font-size:0.9rem;color:#666;margin:10px 0;">Healthcare for underserved areas.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:42%;"></div>
+                        </div>
+                        <a href="404.html" class="btn btn-secondary"
+                            style="width:100%;text-align:center;display:block;">Donate Now</a>
+                    </div>
+                </div>
+                <div class="campaign-card animate fade-in-up delay-300">
+                    <div class="campaign-img"
+                        style="background-image:url('https://placehold.co/400x300/brown/white?text=Shelter');"></div>
+                    <div class="campaign-content">
+                        <h4>Homeless Shelter Fund</h4>
+                        <p style="font-size:0.9rem;color:#666;margin:10px 0;">Safe havens for the unhoused.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width:73%;"></div>
+                        </div>
+                        <a href="404.html" class="btn btn-secondary"
+                            style="width:100%;text-align:center;display:block;">Donate Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align:center;margin-top:50px;" class="animate fade-in-up">
+                <a href="404.html" class="btn btn-primary">Load More Campaigns</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>HopeFund</h3>
+                    <p>Empowering change through collective giving.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <a href="about.html">About Us</a><a href="campaigns.html">Campaigns</a>
+                    <a href="services.html">Services</a><a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p>123 Charity Lane, NY</p>
+                    <p>help@hopefund.org</p>
+                    <div class="social-links">
+                        <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                        <a href="404.html"><i class="fab fa-twitter"></i></a>
+                        <a href="404.html"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

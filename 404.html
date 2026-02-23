@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 – Page Not Found | HopeFund</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .error-page {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 60px;
+            text-align: center;
+        }
+
+        /* Big animated 404 */
+        .error-number {
+            font-size: clamp(6rem, 20vw, 12rem);
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #006400, #00a000, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: float 3s ease-in-out infinite;
+            user-select: none;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-16px);
+            }
+        }
+
+        .error-icon {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            animation: spin 6s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error-title {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-weight: 700;
+            color: #333;
+            margin: 16px 0 10px;
+        }
+
+        .error-desc {
+            color: #777;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            max-width: 420px;
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-err {
+            padding: 13px 30px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: transform 0.25s, box-shadow 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-err:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-home {
+            background: #006400;
+            color: #fff;
+        }
+
+        .btn-back {
+            background: #FFD700;
+            color: #333;
+        }
+
+        /* Decorative circles */
+        .circles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .circles span {
+            position: absolute;
+            display: block;
+            border-radius: 50%;
+            background: rgba(0, 100, 0, 0.05);
+            animation: rise 8s linear infinite;
+        }
+
+        .circles span:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 8s;
+        }
+
+        .circles span:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            left: 30%;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .circles span:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            left: 55%;
+            animation-delay: 4s;
+            animation-duration: 10s;
+        }
+
+        .circles span:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            left: 75%;
+            animation-delay: 1s;
+            animation-duration: 9s;
+        }
+
+        .circles span:nth-child(5) {
+            width: 50px;
+            height: 50px;
+            left: 90%;
+            animation-delay: 3s;
+            animation-duration: 11s;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -150px;
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 0.5;
+            }
+
+            100% {
+                bottom: 110%;
+                opacity: 0;
+            }
+        }
+
+        .error-page>* {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Animated background -->
+    <div class="circles">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo"><img src="logo.webp" alt="HopeFund"></a>
+                <ul class="nav-links">
+                    <li class="nav-dropdown">
+                        <a href="index.html">Home</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="donor-stories.html"><span class="dd-icon">🧡</span> Donor Stories</a></li>
+                            <li><a href="start-campaign.html"><span class="dd-icon">🚀</span> Start a Campaign</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="campaigns.html">Campaigns</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="btn btn-primary"
+                            style="padding:8px 20px;margin-left:10px;">Login</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 404 Content -->
+    <main class="error-page">
+        <div class="error-icon">🔍</div>
+        <div class="error-number">404</div>
+        <h1 class="error-title">Oops! Page Not Found</h1>
+        <p class="error-desc">
+            The page you're looking for doesn't exist or has been moved.
+            Let's get you back on track!
+        </p>
+        <div class="error-actions">
+            <a href="index.html" class="btn-err btn-home">🏠 Go Home</a>
+            <a href="javascript:history.back()" class="btn-err btn-back">← Go Back</a>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                if (window.innerWidth <= 768) { e.preventDefault(); this.parentElement.classList.toggle('open'); }
+            });
+        });
+    </script>
+</body>
+
+</html>
