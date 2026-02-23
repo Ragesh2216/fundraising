@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         .hero {
             height: 90vh;
@@ -124,26 +125,48 @@
         <div class="container">
             <nav>
                 <a href="index.html" class="logo"><img src="logo.webp" alt="HopeFund"></a>
-                <ul class="nav-links">
-                    <li class="nav-dropdown">
-                        <a href="index.html" class="active">Home</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="donor-stories.html" > home2</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="campaigns.html">Campaigns</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html" class="btn btn-primary"
-                            style="padding:8px 20px;margin-left:10px;">Login</a></li>
-                </ul>
+                <div class="nav-links">
+                    <div class="dropdown">
+                        <a href="./index.html" class="active dropdown-trigger">
+                            Home <i data-lucide="chevron-down" style="width:16px;margin-left:4px;"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="./donor-stories.html">Home2</a>
+                        </div>
+                    </div>
+                    <a href="about.html">About</a>
+                    <a href="campaigns.html">Campaigns</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html" class="btn btn-primary" style="padding:8px 20px;margin-left:10px;">Login</a>
+                </div>
                 <div class="hamburger">
                     <span class="bar"></span><span class="bar"></span><span class="bar"></span>
                 </div>
             </nav>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden" id="mobile-menu">
+        <div class="mobile-item-wrapper">
+            <div class="mobile-item-header">
+                <a href="./index.html">Home</a>
+                <button class="mobile-dropdown-btn" id="mobile-home-toggle">
+                    <i data-lucide="chevron-down"></i>
+                </button>
+            </div>
+            <div class="mobile-submenu hidden" id="mobile-home-submenu">
+                <a href="donor-stories.html">Home2</a>
+            </div>
+        </div>
+        <a href="./about.html" class="mobile-nav-link">About</a>
+        <a href="./campaigns.html" class="mobile-nav-link">Campaigns</a>
+        <a href="./services.html" class="mobile-nav-link">Services</a>
+        <a href="./contact.html" class="mobile-nav-link">Contact</a>
+        <a href="./login.html" class="mobile-nav-link btn btn-primary"
+            style="margin:10px 16px;text-align:center;">Login</a>
+    </div>
 
     <!-- Hero -->
     <section class="hero">
@@ -294,6 +317,53 @@
                     <i class="fas fa-smile-beam step-icon"></i>
                     <h4>3. See the Impact</h4>
                     <p>Receive updates and see how your contribution helps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Start a Campaign -->
+    <section style="padding:80px 0;background:#f8f9fa;">
+        <div class="container">
+            <div class="section-title animate fade-in-up">
+                <h2>Start a Campaign</h2>
+                <p>Turn your passion into a movement. Launch a fundraiser in under 10 minutes.</p>
+            </div>
+            <div
+                style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;margin-bottom:48px;">
+                <div class="step-card animate fade-in-up" style="border-top:4px solid var(--primary-color);">
+                    <div style="font-size:2rem;margin-bottom:12px;">📝</div>
+                    <h4>1. Tell Your Story</h4>
+                    <p>Write a compelling description with photos or a video.</p>
+                </div>
+                <div class="step-card animate fade-in-up delay-100" style="border-top:4px solid var(--accent-color);">
+                    <div style="font-size:2rem;margin-bottom:12px;">🎯</div>
+                    <h4>2. Set Your Goal</h4>
+                    <p>Choose a realistic target and pick your campaign duration.</p>
+                </div>
+                <div class="step-card animate fade-in-up delay-200" style="border-top:4px solid var(--primary-color);">
+                    <div style="font-size:2rem;margin-bottom:12px;">📣</div>
+                    <h4>3. Share &amp; Promote</h4>
+                    <p>Use our built-in social sharing and email tools to spread the word.</p>
+                </div>
+                <div class="step-card animate fade-in-up delay-300" style="border-top:4px solid var(--accent-color);">
+                    <div style="font-size:2rem;margin-bottom:12px;">💰</div>
+                    <h4>4. Receive Funds</h4>
+                    <p>Withdraw to your bank with no upfront fees — any time.</p>
+                </div>
+            </div>
+            <div style="background:linear-gradient(135deg,#006400,#004d00);border-radius:16px;padding:48px 24px;text-align:center;"
+                class="animate fade-in-up">
+                <h3 style="color:#fff;font-size:clamp(1.3rem,3vw,1.9rem);margin-bottom:12px;">Ready to Make a
+                    Difference?</h3>
+                <p style="color:#b8e0b8;margin-bottom:28px;max-width:540px;margin-left:auto;margin-right:auto;">Join
+                    12,400+ campaigners who've raised over $8.2M on HopeFund. Your cause deserves an audience.</p>
+                <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+                    <a href="start-campaign.html" class="btn btn-secondary" style="font-size:1rem;">🚀 Start My
+                        Campaign</a>
+                    <a href="404.html" class="btn"
+                        style="background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(255,255,255,0.4);">Learn
+                        More</a>
                 </div>
             </div>
         </div>

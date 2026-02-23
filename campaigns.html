@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         .campaign-card {
             background: #fff;
@@ -73,26 +74,48 @@
         <div class="container">
             <nav>
                 <a href="index.html" class="logo"><img src="logo.webp" alt="HopeFund"></a>
-                <ul class="nav-links">
-                    <li class="nav-dropdown">
-                        <a href="index.html">Home</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="donor-stories.html" > home2</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="campaigns.html" class="active">Campaigns</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html" class="btn btn-primary"
-                            style="padding:8px 20px;margin-left:10px;">Login</a></li>
-                </ul>
+                <div class="nav-links">
+                    <div class="dropdown">
+                        <a href="./index.html" class="dropdown-trigger">
+                            Home <i data-lucide="chevron-down" style="width:16px;margin-left:4px;"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="./donor-stories.html">Home2</a>
+                        </div>
+                    </div>
+                    <a href="about.html">About</a>
+                    <a href="campaigns.html" class="active">Campaigns</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html" class="btn btn-primary" style="padding:8px 20px;margin-left:10px;">Login</a>
+                </div>
                 <div class="hamburger">
                     <span class="bar"></span><span class="bar"></span><span class="bar"></span>
                 </div>
             </nav>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden" id="mobile-menu">
+        <div class="mobile-item-wrapper">
+            <div class="mobile-item-header">
+                <a href="./index.html">Home</a>
+                <button class="mobile-dropdown-btn" id="mobile-home-toggle">
+                    <i data-lucide="chevron-down"></i>
+                </button>
+            </div>
+            <div class="mobile-submenu hidden" id="mobile-home-submenu">
+                <a href="./donor-stories.html">Home2</a>
+            </div>
+        </div>
+        <a href="./about.html" class="mobile-nav-link">About</a>
+        <a href="./campaigns.html" class="mobile-nav-link">Campaigns</a>
+        <a href="./services.html" class="mobile-nav-link">Services</a>
+        <a href="./contact.html" class="mobile-nav-link">Contact</a>
+        <a href="./login.html" class="mobile-nav-link btn btn-primary"
+            style="margin:10px 16px;text-align:center;">Login</a>
+    </div>
 
     <section style="background-color:#f4f4f4;padding:120px 0 60px;text-align:center;">
         <div class="container animate fade-in-up">
@@ -102,19 +125,12 @@
     </section>
 
     <section style="padding:80px 0;">
-        <div class="container">
-            <div style="text-align:center;margin-bottom:40px;" class="animate fade-in-up">
-                <a href="404.html" class="filter-btn active">All</a>
-                <a href="404.html" class="filter-btn">Education</a>
-                <a href="404.html" class="filter-btn">Health</a>
-                <a href="404.html" class="filter-btn">Environment</a>
-                <a href="404.html" class="filter-btn">Food</a>
-            </div>
+      
 
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;">
                 <div class="campaign-card animate fade-in-up">
                     <div class="campaign-img"
-                        style="background-image:url('https://placehold.co/400x300/green/white?text=Reforestation');">
+                        style="background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=300&fit=crop');">
                     </div>
                     <div class="campaign-content">
                         <h4>Global Reforestation</h4>
@@ -128,7 +144,7 @@
                 </div>
                 <div class="campaign-card animate fade-in-up delay-100">
                     <div class="campaign-img"
-                        style="background-image:url('https://placehold.co/400x300/orange/white?text=Food+Drive');">
+                        style="background-image:url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=400&h=300&fit=crop');">
                     </div>
                     <div class="campaign-content">
                         <h4>Community Food Drive</h4>
@@ -142,7 +158,8 @@
                 </div>
                 <div class="campaign-card animate fade-in-up delay-200">
                     <div class="campaign-img"
-                        style="background-image:url('https://placehold.co/400x300/blue/white?text=Tech+Labs');"></div>
+                        style="background-image:url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=300&fit=crop');">
+                    </div>
                     <div class="campaign-content">
                         <h4>School Tech Labs</h4>
                         <p style="font-size:0.9rem;color:#666;margin:10px 0;">Modernizing classrooms.</p>
@@ -155,7 +172,8 @@
                 </div>
                 <div class="campaign-card animate fade-in-up delay-100">
                     <div class="campaign-img"
-                        style="background-image:url('https://placehold.co/400x300/teal/white?text=Clean+Water');"></div>
+                        style="background-image:url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=300&fit=crop');">
+                    </div>
                     <div class="campaign-content">
                         <h4>Clean Water Initiative</h4>
                         <p style="font-size:0.9rem;color:#666;margin:10px 0;">Safe drinking water for villages.</p>
@@ -168,7 +186,7 @@
                 </div>
                 <div class="campaign-card animate fade-in-up delay-200">
                     <div class="campaign-img"
-                        style="background-image:url('https://placehold.co/400x300/purple/white?text=Medical+Aid');">
+                        style="background-image:url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=300&fit=crop');">
                     </div>
                     <div class="campaign-content">
                         <h4>Rural Health Clinics</h4>
@@ -182,7 +200,8 @@
                 </div>
                 <div class="campaign-card animate fade-in-up delay-300">
                     <div class="campaign-img"
-                        style="background-image:url('https://placehold.co/400x300/brown/white?text=Shelter');"></div>
+                        style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop');">
+                    </div>
                     <div class="campaign-content">
                         <h4>Homeless Shelter Fund</h4>
                         <p style="font-size:0.9rem;color:#666;margin:10px 0;">Safe havens for the unhoused.</p>

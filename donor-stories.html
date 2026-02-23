@@ -465,14 +465,11 @@
             <nav>
                 <a href="index.html" class="logo"><img src="logo.webp" alt="HopeFund"></a>
                 <ul class="nav-links">
-                    <li >
-                        <a href="index.html">Home1</a>
+                    <li class="nav-dropdown">
+                        <a href="index.html">Home</a>
                         
                     </li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="campaigns.html">Campaigns</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    
                     <li><a href="login.html" class="btn btn-primary"
                             style="padding:8px 20px;margin-left:10px;">Login</a></li>
                 </ul>
@@ -480,6 +477,23 @@
             </nav>
         </div>
     </header>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden" id="mobile-menu">
+        <div class="mobile-item-wrapper">
+            <div class="mobile-item-header">
+                <a href="./index.html">Home</a>
+                <button class="mobile-dropdown-btn" id="mobile-home-toggle">
+                    <i data-lucide="chevron-down"></i>
+                </button>
+            </div>
+            <div class="mobile-submenu hidden" id="mobile-home-submenu">
+                <a href="donor-stories.html">Home2</a>
+            </div>
+        </div>
+        
+        <a href="./login.html" class="mobile-nav-link btn btn-primary"
+            style="margin:10px 16px;text-align:center;">Login</a>
+    </div>
 
     <!-- §1 · HERO -->
     <section class="page-hero">

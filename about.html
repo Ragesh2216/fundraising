@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
@@ -18,26 +19,48 @@
         <div class="container">
             <nav>
                 <a href="index.html" class="logo"><img src="logo.webp" alt="HopeFund"></a>
-                <ul class="nav-links">
-                    <li class="nav-dropdown">
-                        <a href="index.html">Home</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="donor-stories.html" > home2</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="campaigns.html">Campaigns</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html" class="btn btn-primary"
-                            style="padding:8px 20px;margin-left:10px;">Login</a></li>
-                </ul>
+                <div class="nav-links">
+                    <div class="dropdown">
+                        <a href="./index.html" class="dropdown-trigger">
+                            Home <i data-lucide="chevron-down" style="width:16px;margin-left:4px;"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="./donor-stories.html">Home2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="active">About</a>
+                    <a href="campaigns.html">Campaigns</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html" class="btn btn-primary" style="padding:8px 20px;margin-left:10px;">Login</a>
+                </div>
                 <div class="hamburger">
                     <span class="bar"></span><span class="bar"></span><span class="bar"></span>
                 </div>
             </nav>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden" id="mobile-menu">
+        <div class="mobile-item-wrapper">
+            <div class="mobile-item-header">
+                <a href="./index.html">Home</a>
+                <button class="mobile-dropdown-btn" id="mobile-home-toggle">
+                    <i data-lucide="chevron-down"></i>
+                </button>
+            </div>
+            <div class="mobile-submenu hidden" id="mobile-home-submenu">
+                <a href="./donor-stories.html">Home2</a>
+            </div>
+        </div>
+        <a href="./about.html" class="mobile-nav-link">About</a>
+        <a href="./campaigns.html" class="mobile-nav-link">Campaigns</a>
+        <a href="./services.html" class="mobile-nav-link">Services</a>
+        <a href="./contact.html" class="mobile-nav-link">Contact</a>
+        <a href="./login.html" class="mobile-nav-link btn btn-primary"
+            style="margin:10px 16px;text-align:center;">Login</a>
+    </div>
 
     <section style="background-color:#f4f4f4;padding:120px 0 60px;text-align:center;">
         <div class="container animate fade-in-up">
@@ -60,8 +83,9 @@
                         Today</a>
                 </div>
                 <div style="flex:1;min-width:280px;" class="animate fade-in-up delay-100">
-                    <img src="https://placehold.co/600x400/006400/FFF?text=Our+Mission"
-                        style="border-radius:10px;width:100%;">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop"
+                        alt="Our Mission - Community volunteers"
+                        style="border-radius:10px;width:100%;object-fit:cover;">
                 </div>
             </div>
         </div>
@@ -75,24 +99,27 @@
             <div
                 style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;text-align:center;">
                 <div class="animate fade-in-up">
-                    <img src="https://placehold.co/200x200/333/FFF?text=CEO"
-                        style="border-radius:50%;width:140px;height:140px;margin:0 auto 20px;">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
+                        alt="John Doe - CEO"
+                        style="border-radius:50%;width:140px;height:140px;margin:0 auto 20px;object-fit:cover;">
                     <h4>John Doe</h4>
                     <p style="color:#666;">Founder &amp; CEO</p>
                     <a href="404.html" class="btn btn-primary"
                         style="padding:8px 20px;margin-top:10px;display:inline-block;font-size:0.8rem;">View Profile</a>
                 </div>
                 <div class="animate fade-in-up delay-100">
-                    <img src="https://placehold.co/200x200/333/FFF?text=COO"
-                        style="border-radius:50%;width:140px;height:140px;margin:0 auto 20px;">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop"
+                        alt="Jane Smith - COO"
+                        style="border-radius:50%;width:140px;height:140px;margin:0 auto 20px;object-fit:cover;">
                     <h4>Jane Smith</h4>
                     <p style="color:#666;">Director of Operations</p>
                     <a href="404.html" class="btn btn-primary"
                         style="padding:8px 20px;margin-top:10px;display:inline-block;font-size:0.8rem;">View Profile</a>
                 </div>
                 <div class="animate fade-in-up delay-200">
-                    <img src="https://placehold.co/200x200/333/FFF?text=CTO"
-                        style="border-radius:50%;width:140px;height:140px;margin:0 auto 20px;">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+                        alt="Mike Johnson - CTO"
+                        style="border-radius:50%;width:140px;height:140px;margin:0 auto 20px;object-fit:cover;">
                     <h4>Mike Johnson</h4>
                     <p style="color:#666;">Head of Technology</p>
                     <a href="404.html" class="btn btn-primary"
