@@ -10,6 +10,31 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ── Mobile fixes for about page ── */
+        @media (max-width: 768px) {
+
+            /* Remove excess padding on hero banner */
+            section[style*="padding:120px"] {
+                padding: 100px 0 30px !important;
+            }
+
+            /* Mission section: stack columns, no wasted space */
+            section[style*="padding:80px 0"]>.container>div[style*="display:flex"] {
+                gap: 24px;
+            }
+
+            section[style*="padding:80px 0"]>.container>div[style*="display:flex"]>div {
+                min-width: 100% !important;
+                flex: 1 1 100% !important;
+            }
+
+            /* Tighten team section padding */
+            section[style*="background-color:#f9f9f9"] {
+                padding: 50px 0 !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -83,8 +108,7 @@
                         Today</a>
                 </div>
                 <div style="flex:1;min-width:280px;" class="animate fade-in-up delay-100">
-                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop"
-                        alt="Our Mission - Community volunteers"
+                    <img src="images/about-mission.webp" alt="Our Mission - Community volunteers"
                         style="border-radius:10px;width:100%;object-fit:cover;">
                 </div>
             </div>
@@ -99,17 +123,15 @@
             <div
                 style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;text-align:center;">
                 <div class="animate fade-in-up">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
-                        alt="John Doe - CEO"
-                        style="border-radius:50%;width:140px;height:140px;margin:0 auto 20px;object-fit:cover;">
+                    <img src="images/team-john.webp" alt="John Doe - CEO"
+                        style="border-radius:50%;width:140px;height:140px;margin:0 auto 20px;object-fit:cover;object-position:top center;">
                     <h4>John Doe</h4>
                     <p style="color:#666;">Founder &amp; CEO</p>
                     <a href="404.html" class="btn btn-primary"
                         style="padding:8px 20px;margin-top:10px;display:inline-block;font-size:0.8rem;">View Profile</a>
                 </div>
                 <div class="animate fade-in-up delay-100">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop"
-                        alt="Jane Smith - COO"
+                    <img src="images/team-jane.webp" alt="Jane Smith - COO"
                         style="border-radius:50%;width:140px;height:140px;margin:0 auto 20px;object-fit:cover;">
                     <h4>Jane Smith</h4>
                     <p style="color:#666;">Director of Operations</p>
@@ -117,8 +139,7 @@
                         style="padding:8px 20px;margin-top:10px;display:inline-block;font-size:0.8rem;">View Profile</a>
                 </div>
                 <div class="animate fade-in-up delay-200">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
-                        alt="Mike Johnson - CTO"
+                    <img src="images/team-mike.webp" alt="Mike Johnson - CTO"
                         style="border-radius:50%;width:140px;height:140px;margin:0 auto 20px;object-fit:cover;">
                     <h4>Mike Johnson</h4>
                     <p style="color:#666;">Head of Technology</p>
