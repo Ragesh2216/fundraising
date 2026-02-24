@@ -325,7 +325,7 @@
             </nav>
         </div>
     </header>
-        <!-- Mobile Menu -->
+    <!-- Mobile Menu -->
     <div class="mobile-menu hidden" id="mobile-menu">
         <div class="mobile-item-wrapper">
             <div class="mobile-item-header">
@@ -370,7 +370,8 @@
                         </div>
                         <div class="input-group">
                             <label for="login-password">Password</label>
-                            <input type="password" id="login-password" placeholder="Enter your password" required>
+                            <input type="password" id="login-password" placeholder="Enter your password" minlength="6"
+                                required>
                         </div>
 
                         <div class="row-between">
@@ -437,7 +438,7 @@
                         <div class="input-group">
                             <label for="signup-password">Password</label>
                             <input type="password" id="signup-password" placeholder="Create a strong password"
-                                oninput="checkStrength(this.value)" required>
+                                oninput="checkStrength(this.value)" minlength="6" required>
                             <div class="strength-bar">
                                 <div class="strength-fill" id="strength-fill"></div>
                             </div>
