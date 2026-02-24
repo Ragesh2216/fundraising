@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ── Dashboard layout ── */
         .dashboard-container {
             display: flex;
             min-height: 100vh;
             padding-top: 80px;
-            /* Header height */
         }
 
         .sidebar {
@@ -22,41 +22,52 @@
             background: #2c3e50;
             color: #ecf0f1;
             padding: 20px;
-            display: none;
-            /* Hidden on mobile by default */
+            flex-shrink: 0;
+            /* hidden on mobile via transform */
+            transition: transform 0.3s ease;
         }
 
         .sidebar h3 {
             margin-bottom: 30px;
             padding-bottom: 10px;
             border-bottom: 1px solid #34495e;
+            color: #ecf0f1;
+        }
+
+        .sidebar ul {
+            list-style: none;
         }
 
         .sidebar ul li {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .sidebar ul li a {
             color: #bdc3c7;
-            display: block;
-            padding: 10px;
-            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            transition: background 0.2s;
         }
 
         .sidebar ul li a:hover,
         .sidebar ul li a.active {
             background: var(--primary-color);
-            color: white;
+            color: #fff;
         }
 
         .main-content {
             flex: 1;
             padding: 30px;
             background: #f4f6f8;
+            min-width: 0;
+            /* prevent flex blowout */
         }
 
         .card {
-            background: white;
+            background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -65,33 +76,102 @@
 
         .dash-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
         .stat-box {
-            background: white;
-            padding: 20px;
+            background: #fff;
+            padding: 20px 16px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
 
         .stat-box h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .stat-box p {
             color: #7f8c8d;
+            font-size: 0.85rem;
         }
 
-        /* Responsive Dashboard */
-        @media (min-width: 769px) {
+        /* Scrollable table on mobile */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table-wrap table {
+            min-width: 500px;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        /* Mobile sidebar toggle button */
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1100;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Mobile sidebar overlay */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1050;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
             .sidebar {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                height: calc(100vh - 80px);
+                z-index: 1060;
+                transform: translateX(-100%);
+                overflow-y: auto;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.show {
                 display: block;
+            }
+
+            .sidebar-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .main-content {
+                padding: 16px;
+            }
+
+            .card h2 {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -109,34 +189,25 @@
         <div class="container">
             <nav>
                 <a href="index.html" class="logo"><img src="logo.webp" alt="HopeFund"></a>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                   
-                    <!-- Logout for dashboard -->
-                    <li><a href="login.html" class="btn btn-secondary" style="padding: 5px 15px;">Logout</a></li>
-                </ul>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="login.html" class="btn btn-secondary" style="padding:8px 20px;">Logout</a>
+                </div>
                 <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
                 </div>
             </nav>
         </div>
     </header>
-      <!-- Mobile Menu -->
+
+    <!-- Mobile Menu -->
     <div class="mobile-menu hidden" id="mobile-menu">
-        <div class="mobile-item-wrapper">
-            <div class="mobile-item-header">
-                <a href="./index.html">Home</a>
-               
-            </div>
-          
-        </div>
-       
-        <a href="./dashboard.html" class="mobile-nav-link">dashboard</a>
-        <a href="./login.html" class="mobile-nav-link btn btn-primary"
-            style="margin:10px 16px;text-align:center;">Login</a>
+        <a href="./index.html" class="mobile-nav-link">🏠 Home</a>
+        <a href="./login.html" class="mobile-nav-link">🔓 Logout</a>
     </div>
+
+    <!-- Mobile sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
     <div class="dashboard-container">
         <!-- Sidebar -->
@@ -172,37 +243,63 @@
                 </div>
             </div>
 
+            <!-- Recent Activity -->
             <div class="card animate fade-in-up delay-200">
                 <h3>Recent Activity</h3>
-                <table style="width: 100%; margin-top: 15px; border-collapse: collapse;">
-                    <thead>
-                        <tr style="background: #f8f9fa; border-bottom: 2px solid #eee;">
-                            <th style="padding: 12px; text-align: left;">Date</th>
-                            <th style="padding: 12px; text-align: left;">Campaign</th>
-                            <th style="padding: 12px; text-align: left;">Amount</th>
-                            <th style="padding: 12px; text-align: left;">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 12px;">Feb 20, 2024</td>
-                            <td style="padding: 12px;">Clean Water for All</td>
-                            <td style="padding: 12px;">$50.00</td>
-                            <td style="padding: 12px;"><span style="color: green;">Completed</span></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 12px;">Jan 15, 2024</td>
-                            <td style="padding: 12px;">Books for Kids</td>
-                            <td style="padding: 12px;">$25.00</td>
-                            <td style="padding: 12px;"><span style="color: green;">Completed</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr style="background:#f8f9fa;border-bottom:2px solid #eee;">
+                                <th style="padding:12px;text-align:left;">Date</th>
+                                <th style="padding:12px;text-align:left;">Campaign</th>
+                                <th style="padding:12px;text-align:left;">Amount</th>
+                                <th style="padding:12px;text-align:left;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid #eee;">
+                                <td style="padding:12px;">Feb 20, 2024</td>
+                                <td style="padding:12px;">Clean Water for All</td>
+                                <td style="padding:12px;">$50.00</td>
+                                <td style="padding:12px;"><span style="color:green;">Completed</span></td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #eee;">
+                                <td style="padding:12px;">Jan 15, 2024</td>
+                                <td style="padding:12px;">Books for Kids</td>
+                                <td style="padding:12px;">$25.00</td>
+                                <td style="padding:12px;"><span style="color:green;">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </div>
 
+    <!-- Mobile sidebar FAB -->
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+    </button>
+
     <script src="js/main.js"></script>
+    <script>
+        // Sidebar drawer for mobile
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.add('show');
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('show');
+        }
+
+        sidebarToggle && sidebarToggle.addEventListener('click', openSidebar);
+        sidebarOverlay && sidebarOverlay.addEventListener('click', closeSidebar);
+    </script>
 </body>
 
 </html>
