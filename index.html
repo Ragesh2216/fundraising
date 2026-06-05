@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StacklyFund - Empowering Change</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,7 +13,7 @@
     <style>
         .hero {
             height: 90vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/seed/hope/1920/1080');
+            background: linear-gradient(135deg, rgba(4, 30, 22, 0.85) 0%, rgba(15, 23, 42, 0.75) 100%), url('https://picsum.photos/seed/hope/1920/1080');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -23,83 +23,102 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
         }
 
         .stats-section {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #030c08 100%);
             color: #fff;
-            padding: 60px 0;
+            padding: 80px 0;
             text-align: center;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
         }
 
         .stat-item h3 {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 800;
             color: var(--accent-color);
+            letter-spacing: -0.02em;
         }
 
         .campaign-card {
-            background: #fff;
-            border-radius: 10px;
+            background: var(--bg-card);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-speed) var(--transition-curve);
         }
 
         .campaign-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(16, 185, 129, 0.2);
         }
 
         .campaign-img {
-            height: 200px;
+            height: 220px;
             background-size: cover;
             background-position: center;
         }
 
         .campaign-content {
-            padding: 20px;
+            padding: 24px;
         }
 
         .progress-bar {
-            background: #eee;
-            height: 10px;
-            border-radius: 5px;
-            margin: 15px 0;
+            background: #e2e8f0;
+            height: 8px;
+            border-radius: 4px;
+            margin: 18px 0 10px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-light), #34d399);
         }
 
         .step-card {
             text-align: center;
-            padding: 30px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
+            padding: 40px 30px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-speed) var(--transition-curve);
+        }
+
+        .step-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(16, 185, 129, 0.15);
         }
 
         .step-icon {
-            font-size: 3rem;
+            font-size: 2.75rem;
             color: var(--accent-color);
             margin-bottom: 20px;
         }
 
         .testimonial-card {
-            background: #fff;
-            padding: 30px;
-            border-left: 5px solid var(--accent-color);
-            box-shadow: var(--shadow);
+            background: var(--bg-card);
+            padding: 36px;
+            border-radius: 16px;
+            border-left: 6px solid var(--accent-color);
+            box-shadow: var(--shadow-md);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
         }
 
         @media (max-width: 768px) {

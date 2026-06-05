@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 – Page Not Found | HopeFund</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #f8f9fa;
+            font-family: var(--font-primary);
+            background: var(--bg-alt);
             margin: 0;
             padding: 0;
             display: flex;
@@ -34,7 +33,7 @@
             font-size: clamp(6rem, 20vw, 12rem);
             font-weight: 800;
             line-height: 1;
-            background: linear-gradient(135deg, #006400, #00a000, #FFD700);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-color), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -43,12 +42,9 @@
         }
 
         @keyframes float {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-16px);
             }
@@ -65,7 +61,6 @@
             0% {
                 transform: rotate(0deg);
             }
-
             100% {
                 transform: rotate(360deg);
             }
@@ -73,13 +68,14 @@
 
         .error-title {
             font-size: clamp(1.4rem, 4vw, 2rem);
-            font-weight: 700;
-            color: #333;
+            font-weight: 800;
+            color: var(--text-dark);
             margin: 16px 0 10px;
+            letter-spacing: -0.02em;
         }
 
         .error-desc {
-            color: #777;
+            color: var(--text-muted);
             font-size: clamp(0.85rem, 2.5vw, 1rem);
             max-width: 420px;
             line-height: 1.7;
@@ -95,10 +91,10 @@
 
         .btn-err {
             padding: 13px 30px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 0.95rem;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-family: var(--font-primary);
             cursor: pointer;
             border: none;
             text-decoration: none;
@@ -110,17 +106,17 @@
 
         .btn-err:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-home {
-            background: #006400;
+            background: var(--primary-color);
             color: #fff;
         }
 
         .btn-back {
-            background: #FFD700;
-            color: #333;
+            background: var(--accent-color);
+            color: #0f172a;
         }
 
         /* Decorative circles */
@@ -136,7 +132,7 @@
             position: absolute;
             display: block;
             border-radius: 50%;
-            background: rgba(0, 100, 0, 0.05);
+            background: rgba(16, 185, 129, 0.04);
             animation: rise 8s linear infinite;
         }
 
@@ -185,22 +181,19 @@
                 bottom: -150px;
                 opacity: 0;
             }
-
             10% {
                 opacity: 1;
             }
-
             90% {
                 opacity: 0.5;
             }
-
             100% {
                 bottom: 110%;
                 opacity: 0;
             }
         }
 
-        .error-page>* {
+        .error-page > * {
             position: relative;
             z-index: 1;
         }

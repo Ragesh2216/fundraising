@@ -5,64 +5,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campaigns - HopeFund</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         .campaign-card {
-            background: #fff;
-            border-radius: 10px;
+            background: var(--bg-card);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-speed) var(--transition-curve);
         }
 
         .campaign-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(16, 185, 129, 0.2);
         }
 
         .campaign-img {
-            height: 200px;
+            height: 220px;
             background-size: cover;
             background-position: center;
         }
 
         .campaign-content {
-            padding: 20px;
+            padding: 24px;
         }
 
         .progress-bar {
-            background: #eee;
-            height: 10px;
-            border-radius: 5px;
-            margin: 15px 0;
+            background: #e2e8f0;
+            height: 8px;
+            border-radius: 4px;
+            margin: 18px 0 10px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-light), #34d399);
         }
 
         .filter-btn {
-            padding: 10px 22px;
-            border-radius: 25px;
-            border: 2px solid #ddd;
-            background: #fff;
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: 1.5px solid rgba(15, 23, 42, 0.12);
+            background: var(--bg-card);
             font-family: var(--font-primary);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.3s;
-            margin: 5px;
+            transition: all 0.25s var(--transition-curve);
+            margin: 6px;
+            color: var(--text-dark);
         }
 
         .filter-btn:hover,
         .filter-btn.active {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, hsl(162, 80%, 20%), hsl(162, 84%, 14%));
             color: #fff;
-            border-color: var(--primary-color);
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(10, 80, 58, 0.2);
         }
     </style>
 </head>
